@@ -15,10 +15,6 @@
             height: 100%;
         }
 
-        html {
-            overflow: hidden;
-        }
-
         h1 {
             font-family: arial;
             font-weight: bold;
@@ -27,21 +23,27 @@
             margin-left: 50px;
         }
 
+        h2{
+            font-family: arial;
+            margin: 10px;
+            color: #575757;
+        }
+
         #container {      
-            width: 100%;
+            width: 80%;
             height: 100%;
+            margin: 60px auto 0 auto;
         }
 
         .foo {
             width: 60px;
             height: 60px;
             display: block;
-            position: absolute;
-            top: 50%;
-            margin-top: -30px;
+            margin: 40px 0;
             border-radius: 60px;
             background-color: #262626;
             box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+            will-change: transform;
         }
 
 
@@ -53,18 +55,68 @@
     <h1>Easing functions</h1>
 
     <div id="container">
-        <div class="foo"></div>
+        <h2>Quadratic easing in</h2>
+        <div class="foo circle_1"></div>
+        <h2>Quadratic easing out</h2>
+        <div class="foo circle_2"></div>
+        <h2>Quadratic easing in-out</h2>
+        <div class="foo circle_3"></div>
+        <h2>Quart easing in-out</h2>
+        <div class="foo circle_4"></div>
+        <h2>Quint easing in-out</h2>
+        <div class="foo circle_5"></div>
     </div>
 
 </body>
 
 <script src="../lib/Math_Easing.js"></script>
 <script>
-    var circle = document.querySelector('.foo')
-
     
+    var circle1 = document.querySelector('.circle_1')
+    var circle2 = document.querySelector('.circle_2')
+    var circle3 = document.querySelector('.circle_3')
+    var circle4 = document.querySelector('.circle_4')
+    var circle5 = document.querySelector('.circle_5')
 
-    console.log(circle)
+
+    var width = document.querySelector('#container').offsetWidth - 30
+    var TIME = 0
+    var DIRECTION = 'right'
+
+    function animate() {
+
+        if (TIME > 1) {
+            DIRECTION = 'left'
+        } else if (TIME < 0) {
+            DIRECTION = 'right'
+        }
+
+        if (DIRECTION == 'right') {
+            TIME += .01
+        } else {
+            TIME -= .01
+        }
+
+        var position1 = Easing.easeInQuad(TIME)
+        circle1.style.transform = "translate("+ position1 * width +"px , 0)"
+        
+        var position2 = Easing.easeOutQuad(TIME)
+        circle2.style.transform = "translate("+ position2 * width +"px , 0)"
+
+        var position3 = Easing.easeInOutQuad(TIME)
+        circle3.style.transform = "translate("+ position3 * width +"px , 0)"
+
+        var position4 = Easing.easeInOutQuart(TIME)
+        circle4.style.transform = "translate("+ position4 * width +"px , 0)"
+
+        var position5 = Easing.easeInOutQuint(TIME)
+        circle5.style.transform = "translate("+ position5 * width +"px , 0)"
+
+
+        requestAnimationFrame(animate)
+    } 
+    animate()    
+
 </script>
 
 </html>

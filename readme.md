@@ -52,4 +52,59 @@ Decelerating to zero velocity
 Math.easeOutCubic = function (t) { return (--t)*t*t+1 }
 ```
 
+## Cubic easing in-out 
+
+Acceleration until halfway, then deceleration
+
+```
+Math.easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 }
+```
+
+## Quart easing in 
+
+Accelerating from zero velocity
+
+```
+Math.easeInQuart = function (t) { return t*t*t*t }
+```
+
+## Quart easing out 
+
+Decelerating to zero velocity
+
+```
+Math.easeOutQuart = function (t) { return 1-(--t)*t*t*t }
+```
+
+## Quart easing in-out 
+
+Acceleration until halfway, then deceleration
+
+```
+Math.easeInOutQuart = function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t }
+```
+
+## Quint easing in 
+
+Accelerating from zero velocity
+
+```
+Math.easeInQuint = function (t) { return t*t*t*t }
+```
+
+## Quint easing out 
+
+Decelerating to zero velocity
+
+```
+Math.easeOutQuint = function (t) { return 1-(--t)*t*t*t }
+```
+
+## Quint easing in-out 
+
+Acceleration until halfway, then deceleration
+
+```
+Math.easeInOutQuint = function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t }
+```
 
